@@ -1,42 +1,45 @@
-import React, { Component, useState } from "react";
-import '../styles/App.css';
+import React, { useState, useEffect } from "react";
 
-class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            renderBall: false,
-            posi : 0,
-            ballPosition: { left: "0px" }
-        };
-        this.renderChoice = this.renderBallOrButton.bind(this)
-        this.buttonClickHandler = this.buttonClickHandler.bind(this)
+const GolfBallGame = () => {
+  const [showBall, setShowBall] = useState(false);
+  const [position, setPosition] = useState(50);
+
+  const buttonClickHandler = () => {
+    setShowBall(true);
+  };
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "ArrowRight") {
+        setPosition((prevPosition) => prevPosition + 5);
+      }
     };
 
-    buttonClickHandler() {
-   
-   }
-    renderBallOrButton() {
-		if (this.state.renderBall) {
-		    return <div className="ball" style={this.state.ballPosition}></div>
-		} else {
-		    return <button onClick={this.buttonClickHandler} >Start</button>
-		}
-    }
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
-    // bind ArrowRight keydown event
-    componentDidMount() {
-      
-    }
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      {!showBall ? (
+        <button onClick={buttonClickHandler}>Start</button>
+      ) : (
+        <div
+          style={{
+            width: "20px",
+            height: "20px",
+            backgroundColor: "green",
+            borderRadius: "50%",
+            position: "absolute",
+            left: `${position}px`,
+            top: "100px",
+          }}
+        ></div>
+      )}
+    </div>
+  );
+};
 
-    render() {
-        return (
-            <div className="playground">
-                {this.renderBallOrButton()}
-            </div>
-        )
-    }
-}
-
-
-export default App;
+export default GolfBallGame;
