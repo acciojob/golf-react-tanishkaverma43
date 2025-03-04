@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 
 const GolfBallGame = () => {
   const [showBall, setShowBall] = useState(false);
-  const [position, setPosition] = useState(0); // Start at 0 instead of 50
+  const [position, setPosition] = useState(50); // Ensure it starts at 50px
 
   const buttonClickHandler = () => {
     setShowBall(true);
-    setPosition(50); // Set initial position when the ball appears
   };
 
   useEffect(() => {
@@ -25,10 +24,11 @@ const GolfBallGame = () => {
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       {!showBall ? (
-        <button className="start" onClick={buttonClickHandler}>Start</button>
+        <button className="start" data-testid="start-button" onClick={buttonClickHandler}>Start</button>
       ) : (
         <div
           className="ball"
+          data-testid="golf-ball"
           style={{
             width: "20px",
             height: "20px",
