@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const GolfBallGame = () => {
   const [showBall, setShowBall] = useState(false);
-  const [position, setPosition] = useState(50); // Ensure it starts at 50px
+  const [position, setPosition] = useState(0); // Ensure it starts at 0px
 
   const buttonClickHandler = () => {
     setShowBall(true);
