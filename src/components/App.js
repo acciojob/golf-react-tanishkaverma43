@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 
 const GolfBallGame = () => {
   const [showBall, setShowBall] = useState(false);
-  const [position, setPosition] = useState(50);
+  const [position, setPosition] = useState(0); // Start at 0 instead of 50
 
   const buttonClickHandler = () => {
     setShowBall(true);
+    setPosition(50); // Set initial position when the ball appears
   };
 
   useEffect(() => {
