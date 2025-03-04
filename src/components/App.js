@@ -24,9 +24,10 @@ const GolfBallGame = () => {
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       {!showBall ? (
-        <button onClick={buttonClickHandler}>Start</button>
+        <button className="start" onClick={buttonClickHandler}>Start</button>
       ) : (
         <div
+          className="ball"
           style={{
             width: "20px",
             height: "20px",
